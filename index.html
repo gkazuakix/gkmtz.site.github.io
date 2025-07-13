@@ -1,57 +1,116 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>home</title>
+  <title>home</title>
 
-    <style>
-        body {top: 0; left: 0; width: 99%; height: 97%; position: absolute; display: table}
-        p {display: table-cell; vertical-align: middle; text-align: center}
-        #timezone * {text-decoration: none;}
-    </style>
+  <style>
+    :root {
+      font-family: "Times New Roman", Times, serif;
+      font-size: 1em;
+      line-height: 1.5;
+      color: #001f2c;
+    }
 
-    <script type="text/javascript">
-        let options = {
-            timeZone: 'US/Central',
-            hour: 'numeric',
-            minute: 'numeric',
-            second: 'numeric',
-        },
-        formatter = new Intl.DateTimeFormat([], options);
+    body {
+      margin: 0;
+      padding: 0;
+      background: #f8f8f8;
+      display: flex;
+      justify-content: center;
+    }
 
-        // set time
-        setInterval(
-            () => {
-                document.querySelector("#time").innerText = formatter.format(new Date());
-            }
-        , 1000)
-    </script>
+    .container {
+      margin: 60px auto;
+      padding: 30px;
+      width: 100%;
+      max-width: 700px;
+      box-sizing: border-box;
+      text-align: left;
+      background-color: #fff;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      border: 2px solid #001f2c;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-style: italic;
+      font-family: 'Yu Gothic', sans-serif;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto 1rem auto;
+      border-radius: 4px;
+    }
+
+    #timezone {
+      margin-top: 1rem;
+      font-style: italic;
+      text-align: center;
+    }
+
+    nav {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      text-align: center;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #0f0f0f;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+  </style>
+
+  <script type="text/javascript">
+    let options = {
+      timeZone: 'US/Central',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+    };
+
+    const formatter = new Intl.DateTimeFormat([], options);
+
+    setInterval(() => {
+      document.querySelector("#time").innerText = formatter.format(new Date());
+    }, 1000);
+  </script>
 </head>
 
 <body>
-    <p>
-        <font size="7"><i><b>Gabriel 和明 Martinez</b></i></font> <br>
-        <br>
-        <img src="assets/photos/crown.jpg" style="width:560px;"><br>
-        <br>
-        <span id="timezone">
-            <i>
-                TIME IN AUSTIN -
-                <span id="time">0:00 PM</span>
-                CDT
-            </i>
-        </span>
-        <br><br>
-        <a href="http://jvscholz.com/about.html">about</a> //
-        <a href="http://jvscholz.com/faq.html">faq</a> //
-        <a href="http://jvscholz.com/blog/index.html">blog</a> //
-        <a href="https://drive.google.com/file/d/17CnAyDkTUckt3jNoQjzsUmVlzP1jdp6t/view?usp=sharing">resume</a> //
-        <a href="http://jvscholz.com/contact.html">contact</a>
-        <br>
-        <br>
-    </p>
+  <div class="container">
+    <nav>
+      <a href="./index.html">home</a> |
+      <a href="./about.html">about</a> |
+      <a href="./blog/index.html">blog</a> |
+      <a href="./contact.html">contact</a>
+    </nav>
+
+    <h1>GABRIEL 和明 MARTINEZ</h1>
+
+    <img src="assets/photos/lakeashi.JPG">
+    <p><i>Lake Ashi, Japan</i></p>
+
+    <div id="timezone">
+      TIME IN AUSTIN – <span id="time">0:00 PM</span> CDT
+    </div>
+  </div>
 </body>
 </html>

@@ -1,0 +1,17 @@
+[
+  {
+    "title": "My First Post",
+    "href": "my-first-post.html",
+    "date": "2025-07-01"
+  },
+  {
+    "title": "Exploring the Universe",
+    "href": "exploring-universe.html",
+    "date": "2025-06-30"
+  },
+  {
+    "title": "Web Development Tips",
+    "href": "web-dev-tips.html",
+    "date": "2025-06-29"
+  }
+]
