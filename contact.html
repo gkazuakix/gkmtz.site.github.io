@@ -1,1 +1,126 @@
-<p>nothing here yet</p>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🩻</text></svg>">
+
+  <title>contact</title>
+
+  <style>
+    :root {
+      font-family: "Times New Roman", Times, serif;
+      font-size: 1em;
+      line-height: 1.5;
+      color: #001f2c;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: #f8f8f8;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      margin: 60px auto;
+      padding: 30px;
+      width: 100%;
+      max-width: 700px;
+      box-sizing: border-box;
+      text-align: left;
+      background-color: #fff;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      border: 2px solid #001f2c;
+    }
+
+    p + p {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto 1rem auto;
+      border-radius: 4px;
+    }
+
+    #timezone {
+      margin-top: 1rem;
+      font-style: italic;
+      text-align: center;
+    }
+
+    nav {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      text-align: center;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #0f0f0f;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+  </style>
+    
+</head>
+
+<body>
+  <div class="container">
+    <nav>
+      <a href="./index.html">home</a> |
+      <a href="./about.html">about</a> |
+      <a href="./blog/index.html">blog</a> |
+      <a href="./contact.html">contact</a>
+    </nav><br><br>
+
+    <img src="assets/photos/statue.JPG">
+    <p><i>Musée d'Orsay, France — May 2024 — Shot on Nikon D5100 </i></p><br>
+
+    
+    <p>Feel free to reach out!</p>
+    <p>Email: gkm4649@gmail.com</p>
+    <p>Steam: <a href="https://steamcommunity.com/id/gkazuakix" target="_blank">gkazuakix</a></p><br>
+
+    <hr><p>Want to leave a message on this page? Fill out this form!</p>
+    <script async src="https://guestbooks.meadow.cafe/resources/js/embed_script/768/script.js"></script> 
+    <div id="guestbooks___guestbook-form-container">
+        <form id="guestbooks___guestbook-form" action="https://guestbooks.meadow.cafe/guestbook/768/submit" method="post">
+            <div class="guestbooks___input-container">
+                <input placeholder="Name" type="text" id="name" name="name" required>
+            </div>
+            <div class="guestbooks___input-container">
+                <input placeholder="Website (optional)" type="url" id="website" name="website">
+            </div>
+            <div id="guestbooks___challenge-answer-container"></div>  
+            <br/>
+            <div class="guestbooks___input-container">
+                <textarea placeholder="Message (plain text only)" id="text" name="text" style="width: 100%; box-sizing: border-box; resize: vertical;" required></textarea>
+            </div>
+            <br/>
+            <input type="submit" value="Submit">
+            <div id="guestbooks___error-message"></div>  
+        </form>
+    </div>
+    <div id="guestbooks___guestbook-made-with" style="text-align: right;">
+        <small>Made with <a target="_blank" href="https://guestbooks.meadow.cafe">Guestbooks</a></small>
+    </div>  
+    <hr style="margin: 1em 0;"/>
+    <h3 id="guestbooks___guestbook-messages-header">Messages</h3>
+    <div id="guestbooks___guestbook-messages-container"></div>  
+
+  </div>
+</body>
+</html>
