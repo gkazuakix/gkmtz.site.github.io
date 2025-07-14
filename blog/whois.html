@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🩻</text></svg>">
+
+  <title>blog</title>
+
+  <style>
+    :root {
+      font-family: "Times New Roman", Times, serif;
+      font-size: 1em;
+      line-height: 1.5;
+      color: #001f2c;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: #f8f8f8;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      margin: 60px auto;
+      padding: 30px;
+      width: 100%;
+      max-width: 700px;
+      box-sizing: border-box;
+      text-align: left;
+      background-color: #fff;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      border: 2px solid #001f2c;
+    }
+
+    h4 {
+        font-size: 1rem;
+        font-weight: bold;
+        font-family: 'Yu Gothic', sans-serif;
+        margin-top: 2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    h4 + p {
+        margin-top: 0;
+    }
+
+    p.blog {
+        font-family: 'Yu Gothic', sans-serif;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto 1rem auto;
+      border-radius: 4px;
+    }
+
+    nav {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      text-align: center;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #0f0f0f;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <nav>
+      <a href="../index.html">home</a> |
+      <a href="../about.html">about</a> |
+      <a href="../blog/index.html">blog</a> |
+      <a href="../contact.html">contact</a>
+    </nav>
+
+    <h2>learning about whois privacy the hard way</h2>
+    <p>jul 14 2025</p>
+
+    <p class="blog">DO NOT USE YOUR REAL PERSONAL INFO WHEN USING A TLD THAT REQUIRES PUBLIC WHOIS INFORMATION!</p>
+
+    <p class="blog">Man, I feel like such a dummy. The URL for this site used to be gkmtz.us because the (.us) TLD was really cheap on <a href="https://www.spaceship.com/" target="_blank">Spaceship</a>. I just assumed that my personal information would be protected.</p>
+    <p class="blog">Today, while at work, I started getting these calls from caller ID "Plex Logo". At first I ignored them and blocked the numbers, but the calls kept piling in from Plex Logo from different numbers. After some reading, I found out that <b>many country-code TLDs don't allow WHOIS privacy, including .us</b>.</p>
+
+    <p class="blog">I immediately changed my info to fake addresses, and so far it looks like the frequency of calls have decreased but not to zero. Looks like Spaceship is able to delete the domain and give me a full refund since it's been less than 120 hours since purchase. Lesson learned, I guess.</p>
+    <p class="blog">Use <a href="https://www.whois.com/whois/" target="_blank">whois.com</a> to quickly check if your personal info is tied to your domain.</p>
+    <br><p>last edited jul 14 2025</p>
+</body>
+</html>

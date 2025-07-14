@@ -100,34 +100,36 @@
     </ul>
   </div>
 
-  <script>
-    fetch('posts.json')
-      .then(response => response.json())
-      .then(posts => {
-        const list = document.getElementById('blog-list');
-        list.innerHTML = '';
+    <script>
+      fetch('posts.json')
+        .then(response => response.json())
+        .then(posts => {
+          const list = document.getElementById('blog-list');
+          list.innerHTML = '';
 
-        posts.forEach(post => {
-          const li = document.createElement('li');
-          const [year, month, day] = post.date.split('-');
-          const date = new Date(year, month - 1, day); // local time, not UTC
-          const formatted = date.toLocaleDateString('en-US', {
-            day: '2-digit',
-            month: 'short',
-            year: 'numeric'
+          posts.sort((a, b) => new Date(b.date) - new Date(a.date)); // sort by date descending
+
+          posts.forEach(post => {
+            const li = document.createElement('li');
+            const [year, month, day] = post.date.split('-');
+            const date = new Date(year, month - 1, day); // local time, not UTC
+            const formatted = date.toLocaleDateString('en-US', {
+              day: '2-digit',
+              month: 'short',
+              year: 'numeric'
+            });
+
+            li.innerHTML = `
+              <time datetime="${post.date}">${formatted}</time>
+              <a href="${post.href}">${post.title}</a>
+            `;
+            list.appendChild(li);
           });
-
-          li.innerHTML = `
-            <time datetime="${post.date}">${formatted}</time>
-            <a href="${post.href}">${post.title}</a>
-          `;
-          list.appendChild(li);
+        })
+        .catch(error => {
+          document.getElementById('blog-list').innerHTML = '<li>Error loading posts.</li>';
+          console.error(error);
         });
-      })
-      .catch(error => {
-        document.getElementById('blog-list').innerHTML = '<li>Error loading posts.</li>';
-        console.error(error);
-      });
-  </script>
+    </script>
 </body>
 </html>
