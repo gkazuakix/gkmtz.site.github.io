@@ -97,16 +97,87 @@
     <h3>who</h3>
     <p>gabriel</p>
     <h3>what</h3>
-    <p>just a guy</p>
+    <p>professional jester</p>
     <h3>where</h3>
     <p>houston → austin</p>
     <h3>age</h3>
-    <p>23</p>
-    <img src="https://www.progarchives.com/progressive_rock_discography_covers/12829/cover_203672062025_r.jpg" width="25%" align="right">
+    <p id="age">Loading...</p>
+    <script>
+      const birthDate = new Date('2001-11-01T18:43:00');
+
+      function updateAge() {
+        const now = new Date();
+
+        let years = now.getFullYear() - birthDate.getFullYear();
+        let months = now.getMonth() - birthDate.getMonth();
+        let days = now.getDate() - birthDate.getDate();
+        let hours = now.getHours() - birthDate.getHours();
+        let minutes = now.getMinutes() - birthDate.getMinutes();
+        let seconds = now.getSeconds() - birthDate.getSeconds();
+
+        // Adjust negative values by borrowing from larger units
+        if (seconds < 0) {
+          seconds += 60;
+          minutes--;
+        }
+        if (minutes < 0) {
+          minutes += 60;
+          hours--;
+        }
+        if (hours < 0) {
+          hours += 24;
+          days--;
+        }
+        if (days < 0) {
+          const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+          days += prevMonth.getDate();
+          months--;
+        }
+        if (months < 0) {
+          months += 12;
+          years--;
+        }
+
+        document.getElementById("age").textContent =
+          `${years} years, ${months} months, ${days} days, ` +
+          `${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+      }
+
+      updateAge();
+      setInterval(updateAge, 1000);
+    </script>
+
+    <!--<img src="https://www.progarchives.com/progressive_rock_discography_covers/12829/cover_203672062025_r.jpg" width="25%" align="right"> -->
     <h3>current listen</h3>
     <p>ミー子のコンサート — betcover!!</p>
     <h3>current game</h3>
-    <p>persona 3 reload</p>
+    <p id="steam">Getting data from Steam...</p>
+    <script>
+      fetch('https://steam-proxy-ecru.vercel.app/api/steam-recent')
+        .then(res => res.json())
+        .then(data => {
+          const game = data.response?.games?.[0];
+
+          if (!game) {
+            document.getElementById("steam").textContent = "No recent games found.";
+            return;
+          }
+
+          const name = game.name;
+          const minutes = game.playtime_2weeks;
+          const icon = `https://media.steampowered.com/steamcommunity/public/images/apps/${game.appid}/${game.img_icon_url}.jpg`;
+          const link = `https://store.steampowered.com/app/${game.appid}/`;
+
+          document.getElementById("steam").innerHTML = `
+            <img src="${icon}" alt="${name} icon" style="width: 32px; float: left; margin-right: 8px;">
+            ${name} — played ${minutes} min in the last 2 weeks
+          `;
+        })
+        .catch((err) => {
+          console.error("Failed to fetch Steam data:", err);
+          document.getElementById("steam").textContent = "Failed to load Steam data.";
+        });
+    </script>
 
   </div>
 </body>
