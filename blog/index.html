@@ -102,54 +102,59 @@
     </ul>
   </div>
 
-    <script>
-    const searchInput = document.getElementById('search');
-    let allPosts = [];
+<script>
+  const searchInput = document.getElementById('search');
+  let allPosts = [];
 
-    fetch('posts.json')
-      .then(response => response.json())
-      .then(posts => {
-        allPosts = posts.sort((a, b) => new Date(b.date) - new Date(a.date));
-        renderPosts(allPosts);
-      })
-      .catch(error => {
-        document.getElementById('blog-list').innerHTML = '<li>Error loading posts.</li>';
-        console.error(error);
-      });
-
-    function renderPosts(posts) {
-      const list = document.getElementById('blog-list');
-      list.innerHTML = '';
-
-      posts.forEach(post => {
-        const li = document.createElement('li');
-        const [year, month, day] = post.date.split('-');
-        const date = new Date(year, month - 1, day);
-        const formatted = date.toLocaleDateString('en-US', {
-          day: '2-digit',
-          month: 'short',
-          year: 'numeric'
-        });
-
-        li.innerHTML = `
-          <time datetime="${post.date}">${formatted}</time>
-          <a href="${post.href}">${post.title}</a>
-        `;
-        list.appendChild(li);
-      });
-
-      if (posts.length === 0) {
-        list.innerHTML = '<li>No posts found.</li>';
-      }
-    }
-
-    searchInput.addEventListener('input', () => {
-      const query = searchInput.value.trim().toLowerCase();
-      const filtered = allPosts.filter(post =>
-        post.title.toLowerCase().includes(query)
-      );
-      renderPosts(filtered);
+  fetch('posts.json')
+    .then(response => response.json())
+    .then(posts => {
+      allPosts = posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+      renderPosts(allPosts);
+    })
+    .catch(error => {
+      document.getElementById('blog-list').innerHTML = '<li>Error loading posts.</li>';
+      console.error(error);
     });
-  </script>
+
+  function renderPosts(posts) {
+    const list = document.getElementById('blog-list');
+    list.innerHTML = '';
+
+    posts.forEach(post => {
+      const li = document.createElement('li');
+      const [year, month, day] = post.date.split('-');
+      const date = new Date(year, month - 1, day);
+      const formatted = date.toLocaleDateString('en-US', {
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric'
+      });
+
+      li.innerHTML = `
+        <time datetime="${post.date}">${formatted}</time>
+        <a href="${post.href}">${post.title}</a>
+      `;
+      list.appendChild(li);
+    });
+
+    if (posts.length === 0) {
+      list.innerHTML = '<li>No posts found.</li>';
+    }
+  }
+
+  searchInput.addEventListener('input', () => {
+    const query = searchInput.value.trim().toLowerCase();
+
+    const filtered = allPosts.filter(post => {
+      const inTitle = post.title.toLowerCase().includes(query);
+      const inTags = post.tags?.some(tag => tag.toLowerCase().includes(query));
+      return inTitle || inTags;
+    });
+
+    renderPosts(filtered);
+  });
+</script>
+
 </body>
 </html>
