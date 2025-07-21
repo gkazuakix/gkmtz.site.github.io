@@ -79,6 +79,7 @@
     nav a:hover {
       text-decoration: underline;
     }
+
   </style>
     
 </head>
@@ -150,8 +151,12 @@
     <!--<img src="https://www.progarchives.com/progressive_rock_discography_covers/12829/cover_203672062025_r.jpg" width="25%" align="right"> -->
     <h3>current listen</h3>
     <p>ミー子のコンサート — betcover!!</p>
-    <h3>current game</h3>
+    <h3>current steam game</h3>
     <p id="steam">Getting data from Steam...</p>
+
+    <h3>current nintendo game</h3>
+    <p id="nintendo">Getting data from Nintendo...</p>
+
     <script>
       fetch('https://steam-proxy-ecru.vercel.app/api/steam-recent')
         .then(res => res.json())
@@ -166,17 +171,52 @@
           const name = game.name;
           const minutes = game.playtime_2weeks;
           const icon = `https://media.steampowered.com/steamcommunity/public/images/apps/${game.appid}/${game.img_icon_url}.jpg`;
-          const link = `https://store.steampowered.com/app/${game.appid}/`;
 
           document.getElementById("steam").innerHTML = `
             <img src="${icon}" alt="${name} icon" style="width: 32px; float: left; margin-right: 8px;">
             ${name} — played ${minutes} min in the last 2 weeks
-          `;
+            <div style="clear: both;"></div>
+            `;
         })
         .catch((err) => {
           console.error("Failed to fetch Steam data:", err);
           document.getElementById("steam").textContent = "Failed to load Steam data.";
         });
+
+      fetch('https://exophase-scraper.vercel.app/api/recent')
+        .then(res => res.json())
+        .then(data => {
+          const game = data;
+
+      if (!game) {
+        document.getElementById("nintendo").textContent = "No recent Nintendo games found.";
+        return;
+      }
+
+      function parsePlaytime(playtimeStr) {
+        const hoursMatch = playtimeStr.match(/(\d+)h/);
+        const minutesMatch = playtimeStr.match(/(\d+)m/);
+
+        const hours = hoursMatch ? parseInt(hoursMatch[1], 10) : 0;
+        const minutes = minutesMatch ? parseInt(minutesMatch[1], 10) : 0;
+
+        return hours * 60 + minutes;
+      }     
+
+          const name = game.title;
+          const playtime = game.playtime;
+          const minutes = parsePlaytime(playtime);
+          const image = game.image;
+
+      document.getElementById("nintendo").innerHTML = `
+        <img src="${image}" alt="${name} cover" style="width: 32px; float: left; margin-right: 8px;">
+        ${name} — played ${minutes} min total
+      `;
+    })
+    .catch((err) => {
+      console.error("Failed to fetch Nintendo data:", err);
+      document.getElementById("nintendo").textContent = "Failed to load Nintendo data.";
+    });
     </script>
 
   </div>
