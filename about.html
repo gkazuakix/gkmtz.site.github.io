@@ -148,13 +148,13 @@
       setInterval(updateAge, 1000);
     </script>
 
-    <!--<img src="https://www.progarchives.com/progressive_rock_discography_covers/12829/cover_203672062025_r.jpg" width="25%" align="right"> -->
-    <h3>current listen</h3>
-    <p>ミー子のコンサート — betcover!!</p>
-    <h3>recent steam game</h3>
+    <h3>listening to</h3>
+    <p id="now-playing">Loading current song...</p>
+    <script src="now-playing.js"></script>
+    <h3>steam</h3>
     <p id="steam">Getting data from Steam...</p>
 
-    <h3>recent nintendo game</h3>
+    <h3>nintendo</h3>
     <p id="nintendo">Getting data from Nintendo...</p>
 
     <script>
@@ -173,8 +173,9 @@
           const icon = data.img_icon_url;
 
           document.getElementById("steam").innerHTML = `
-            <img src="${icon}" alt="${name} icon" style="width: 32px; float: left; margin-right: 8px;">
-            ${name} — played ${minutes} min total, last played ${lastPlayed}
+            <img src="${icon}" alt="${name} icon" style="width: 50px; float: left; margin-right: 8px;">
+            ${name} — played ${minutes} min total<br>
+            <span style="font-size: 0.8em; color: gray;"> Last Played: ${lastPlayed}</span>
             <div style="clear: both;"></div>
             `;
         })
@@ -210,8 +211,9 @@
           const lastPlayed = game.last_played;
 
       document.getElementById("nintendo").innerHTML = `
-        <img src="${image}" alt="${name} cover" style="width: 32px; float: left; margin-right: 8px;">
-        ${name} — played ${minutes} min total, last played ${lastPlayed}
+        <img src="${image}" alt="${name} cover" style="width: 50px; float: left; margin-right: 8px;">
+        ${name} — played ${minutes} min total<br>
+        <span style="font-size: 0.8em; color: gray;"> Last Played: ${lastPlayed}</span>
       `;
     })
     .catch((err) => {
