@@ -151,10 +151,10 @@
     <!--<img src="https://www.progarchives.com/progressive_rock_discography_covers/12829/cover_203672062025_r.jpg" width="25%" align="right"> -->
     <h3>current listen</h3>
     <p>ミー子のコンサート — betcover!!</p>
-    <h3>current steam game</h3>
+    <h3>recent steam game</h3>
     <p id="steam">Getting data from Steam...</p>
 
-    <h3>current nintendo game</h3>
+    <h3>recent nintendo game</h3>
     <p id="nintendo">Getting data from Nintendo...</p>
 
     <script>
@@ -207,10 +207,11 @@
           const playtime = game.playtime;
           const minutes = parsePlaytime(playtime);
           const image = game.image;
+          const lastPlayed = game.last_played;
 
       document.getElementById("nintendo").innerHTML = `
         <img src="${image}" alt="${name} cover" style="width: 32px; float: left; margin-right: 8px;">
-        ${name} — played ${minutes} min total
+        ${name} — played ${minutes} min total, last played ${lastPlayed}
       `;
     })
     .catch((err) => {
