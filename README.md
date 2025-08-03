@@ -8,4 +8,5 @@ Philosophy: Strictly seperate from my professional life.
 
 Next:
 - [ ] After 5 blog posts, create "recommended" blogs on home page
-- [x] test
+- [ ] "back to top" button on blog posts
+- [ ] dark mode
